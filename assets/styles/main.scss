@@ -3,6 +3,8 @@ $light-text: #abb0be;
 $dark-text: #001e72;
 $button1: #6394f8;
 $dark-text: #001e72;
+$button-light: #777777;
+$delete-button: rgb(255, 98, 98);
 
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
@@ -32,7 +34,6 @@ h3 {
 }
 
 .main-color-text {
-  // color: ;
   font-size: 20px;
 }
 
@@ -92,7 +93,7 @@ nav {
   transition: all 0.3s ease;
   margin: 20px 0;
   background: white;
-  width: 350px;
+  width: 370px;
   position: relative;
   border-radius: 3px;
   padding: 20px;
@@ -177,9 +178,9 @@ nav {
     width: 45%;
     text-align: center;
     &.--delete {
-      background: rgb(255, 98, 98);
+      background: $delete-button;
       &:hover {
-        background: lighten(rgb(255, 98, 98), 7%);
+        background: lighten($delete-button, 7%);
       }
     }
     &:hover {
@@ -187,7 +188,13 @@ nav {
     }
   }
 }
-
+.item-list-container {
+  &.--ranking {
+    height: 375px;
+    overflow-x: scroll;
+    background-color: lightgreen;
+  }
+}
 .clearfix:after {
   content: "";
   display: table;
@@ -198,12 +205,6 @@ nav {
   border: 1px solid black;
   padding: 20px 20px;
   margin: 20px 20px;
-  &.--ranking {
-    height: 350px;
-    overflow-x: scroll;
-    white-space: nowrap;
-    position: relative;
-  }
 }
 .ranking-num {
   // border: solid 1px #515783;
@@ -236,23 +237,31 @@ nav {
   align-items: center;
 
   .item {
-    margin: 0 20px;
+    margin: 0 23px;
+    margin-bottom: 40px;
     &.--ranking {
       justify-content: center;
     }
     .item-container {
+      width: 150px;
       margin-bottom: 20px;
       text-align: center;
       .item-img {
         height: 200px;
         width: 150px;
       }
-
+      .price {
+        margin-top: 3px;
+      }
       .title {
-        display: flex;
+        font-size: 13px;
+        height: 25px;
         word-wrap: break-word;
+        line-height: 13px;
+        overflow: auto;
       }
       .addBtn {
+        overflow-y: scroll;
         width: 100%;
         height: 30px;
         cursor: pointer;
@@ -292,18 +301,28 @@ nav {
     }
     .counter {
       margin-left: 10px;
+      .remove {
+        font-size: 10px;
+        padding: 2px 3px;
+        height: 28px;
+        width: 55px;
+        background: $delete-button;
+        color: $main-color;
+        border-radius: 4px;
+        margin-left: 12px;
+        cursor: pointer;
+        margin-top: 3px;
+        text-decoration: none;
+        &:hover {
+          background: lighten($delete-button, 7%);
+          border-bottom: solid 1px #001e72;
+        }
+      }
     }
     .prices {
       margin-left: 20px;
       .amount {
         font-weight: 600;
-      }
-      .remove {
-        cursor: pointer;
-
-        &:hover {
-          color: #001e72;
-        }
       }
     }
     .counter {
@@ -311,16 +330,11 @@ nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .btn {
-        cursor: pointer;
-        background: #b4c8fe;
-        border-radius: 50px;
-        width: 25px;
+      .cart-quantity-input {
+        padding-left: 5px;
+        margin-left: 3px;
+        width: 42px;
         height: 25px;
-        text-align: center;
-        &:hover {
-          background: #d5dffb;
-        }
       }
     }
 

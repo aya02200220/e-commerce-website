@@ -81,7 +81,7 @@ nav ul li a:hover {
   transition: all 0.3s ease;
   margin: 20px 0;
   background: white;
-  width: 350px;
+  width: 370px;
   position: relative;
   border-radius: 3px;
   padding: 20px;
@@ -169,6 +169,12 @@ nav ul li a:hover {
   background: #7ba5f9;
 }
 
+.item-list-container.--ranking {
+  height: 375px;
+  overflow-x: scroll;
+  background-color: lightgreen;
+}
+
 .clearfix:after {
   content: "";
   display: table;
@@ -179,12 +185,6 @@ nav ul li a:hover {
   border: 1px solid black;
   padding: 20px 20px;
   margin: 20px 20px;
-}
-.item-list-container.--ranking {
-  height: 350px;
-  overflow-x: scroll;
-  white-space: nowrap;
-  position: relative;
 }
 
 .ranking-num {
@@ -210,12 +210,14 @@ nav ul li a:hover {
   align-items: center;
 }
 .items-list .item {
-  margin: 0 20px;
+  margin: 0 23px;
+  margin-bottom: 40px;
 }
 .items-list .item.--ranking {
   justify-content: center;
 }
 .items-list .item .item-container {
+  width: 150px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -223,11 +225,18 @@ nav ul li a:hover {
   height: 200px;
   width: 150px;
 }
+.items-list .item .item-container .price {
+  margin-top: 3px;
+}
 .items-list .item .item-container .title {
-  display: flex;
+  font-size: 13px;
+  height: 25px;
   word-wrap: break-word;
+  line-height: 13px;
+  overflow: auto;
 }
 .items-list .item .item-container .addBtn {
+  overflow-y: scroll;
   width: 100%;
   height: 30px;
   cursor: pointer;
@@ -264,17 +273,28 @@ nav ul li a:hover {
 .cart-lists .cart-list .counter {
   margin-left: 10px;
 }
+.cart-lists .cart-list .counter .remove {
+  font-size: 10px;
+  padding: 2px 3px;
+  height: 28px;
+  width: 55px;
+  background: rgb(255, 98, 98);
+  color: #fffbd3;
+  border-radius: 4px;
+  margin-left: 12px;
+  cursor: pointer;
+  margin-top: 3px;
+  text-decoration: none;
+}
+.cart-lists .cart-list .counter .remove:hover {
+  background: #ff8686;
+  border-bottom: solid 1px #001e72;
+}
 .cart-lists .cart-list .prices {
   margin-left: 20px;
 }
 .cart-lists .cart-list .prices .amount {
   font-weight: 600;
-}
-.cart-lists .cart-list .prices .remove {
-  cursor: pointer;
-}
-.cart-lists .cart-list .prices .remove:hover {
-  color: #001e72;
 }
 .cart-lists .cart-list .counter {
   width: 30%;
@@ -282,16 +302,11 @@ nav ul li a:hover {
   justify-content: space-between;
   align-items: center;
 }
-.cart-lists .cart-list .counter .btn {
-  cursor: pointer;
-  background: #b4c8fe;
-  border-radius: 50px;
-  width: 25px;
+.cart-lists .cart-list .counter .cart-quantity-input {
+  padding-left: 5px;
+  margin-left: 3px;
+  width: 42px;
   height: 25px;
-  text-align: center;
-}
-.cart-lists .cart-list .counter .btn:hover {
-  background: #d5dffb;
 }
 .cart-lists .cart-list .image-box img {
   height: 60px;

@@ -29,18 +29,17 @@ function fetchRandomImages(params) {
 
 function displayImages(arr) {
   arr.forEach((image, index) => {
-    // console.log(image);
-
     if (index <= 4) {
       imageList = document.getElementById("ranking");
       imageList.innerHTML += `
       <li class="item${toggle}">
          <div class="item-container${toggle}">
-         <div class="ranking-num">${index + 1}</div>
-            <img class="item-img" src="${image.image}" alt="tokyo ghoul">
-            <div class="price">$${image.price}</div>
-            <button class="addBtn">Add to cart</button>
-          </div>
+          <div class="ranking-num">${index + 1}</div>
+          <img class="item-img" src="${image.image}" alt="tokyo ghoul">
+          <p class="title">${image.title}</p>
+          <div class="price">$${image.price}</div>
+          <button class="addBtn">Add to cart</button>
+            
         </li>
         `;
     } else {
@@ -48,9 +47,10 @@ function displayImages(arr) {
       imageList.innerHTML += `
       <li class="item${toggle}">
          <div class="item-container${toggle}">
-            <img class="item-img" src="${image.image}" alt="tokyo ghoul">
-            <div class="price">$${image.price}</div>
-            <button class="addBtn">Add to cart</button>
+          <img class="item-img" src="${image.image}" alt="tokyo ghoul">
+          <p class="title">${image.title}</p>
+          <div class="price">$${image.price}</div>
+          <button class="addBtn">Add to cart</button>
           </div>
         </li>
         `;
@@ -62,25 +62,28 @@ function displayImages(arr) {
 window.addEventListener("load", () => {
   updateCartTotal();
 
-  // let removeCartItemButtons = document.querySelector(".remove");
+  //remove items -----------------------------------------
   let removeCartItemButtons = document.getElementsByClassName("remove");
   for (let i = 0; i < removeCartItemButtons.length; i++) {
-    console.log("kakunin");
     let button = removeCartItemButtons[i];
     button.addEventListener("click", removeCartItem);
   }
 
-  // let quantityInputs = document.getElementsByClassName("cart-quantity-input");
-  // for (let i = 0; i < quantityInputs.length; i++) {
-  //   let input = quantityInputs[i];
-  //   input.addEventListener("change", quantityChanged);
-  // }
+  // counter event -----------------------------------------
+  let quantityInputs = document.getElementsByClassName("cart-quantity-input");
+  for (let i = 0; i < quantityInputs.length; i++) {
+    let input = quantityInputs[i];
+    input.addEventListener("change", quantityChanged);
+  }
 
-  // let addToCartButtons = document.getElementsByClassName("shop-item-button");
-  // for (let i = 0; i < addToCartButtons.length; i++) {
-  //   let button = addToCartButtons[i];
-  //   button.addEventListener("click", addToCartClicked);
-  // }
+  // add to cart event -----------------------------------------
+
+  let addToCartButtons = document.getElementsByClassName("addBtn");
+  for (let i = 0; i < addToCartButtons.length; i++) {
+    let button = addToCartButtons[i];
+    console.log(button);
+    button.addEventListener("click", addToCartClicked);
+  }
 
   // document
   //   .getElementsByClassName("btn-purchase")[0]
@@ -96,35 +99,54 @@ window.addEventListener("load", () => {
   // }
 
   function removeCartItem(event) {
-    console.log("here");
     let buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.remove();
     updateCartTotal();
   }
 
+  function quantityChanged(event) {
+    let input = event.target;
+    if (isNaN(input.value) || input.value <= 0) {
+      input.value = 1;
+    }
+    updateCartTotal();
+  }
+
+  function addToCartClicked(event) {
+    console.log("adddd");
+    let button = event.target;
+    let shopItem = button.parentElement.parentElement;
+    let title = shopItem.getElementsByClassName("cart title")[0].innerText;
+    let price = shopItem.getElementsByClassName("amount")[0].innerText;
+    let imageSrc = shopItem.getElementsByClassName("item-img")[0].src;
+    addItemToCart(title, price, imageSrc);
+    updateCartTotal();
+  }
+
   function updateCartTotal() {
+    let totalQuantityElement = document.getElementsByClassName("badge");
     let cartItemContainer = document.getElementsByClassName("cart-lists")[0];
     let cartRows = cartItemContainer.getElementsByClassName("cart-list");
     let total = 0;
+    let totalQuantity = 0;
+
     for (let i = 0; i < cartRows.length; i++) {
       let cartRow = cartRows[i];
-
-      console.log("total check");
 
       let priceElement = cartRow.getElementsByClassName("amount")[0];
       let quantityElement = cartRow.getElementsByClassName("count")[0];
 
-      console.log(priceElement, quantityElement);
-
       let price = parseFloat(priceElement.innerText.replace("$", ""));
-      let quantity = parseFloat(quantityElement.innerText);
+      let quantity = parseFloat(quantityElement.value);
 
       total = total + price * quantity;
-      console.log(total);
+      totalQuantity = totalQuantity + quantity;
     }
     total = Math.round(total * 100) / 100;
     document.getElementsByClassName("main-color-text")[0].innerText =
       "$" + total;
+    totalQuantityElement[0].innerText = totalQuantity;
+    totalQuantityElement[1].innerText = totalQuantity;
   }
 
   /////////////////////////////////////////////////
