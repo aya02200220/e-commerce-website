@@ -15,19 +15,6 @@ const apiUrl = `https://fakestoreapi.com/products`;
 
 fetchRandomImages();
 
-// function fetchRandomImages(params) {
-//   axios
-//     .get(apiUrl)
-//     .then((response) => {
-//       // console.log(response);
-//       // displayImages(response.data);
-//       displayImages(response.data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }
-
 function fetchRandomImages(params) {
   axios
     .get(apiUrl)
@@ -73,6 +60,8 @@ function displayImages(arr) {
 
 ///// cart event ////////////////////////////////////////////
 window.addEventListener("load", () => {
+  updateCartTotal();
+
   // let removeCartItemButtons = document.querySelector(".remove");
   let removeCartItemButtons = document.getElementsByClassName("remove");
   for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -110,7 +99,32 @@ window.addEventListener("load", () => {
     console.log("here");
     let buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.remove();
-    // updateCartTotal();
+    updateCartTotal();
+  }
+
+  function updateCartTotal() {
+    let cartItemContainer = document.getElementsByClassName("cart-lists")[0];
+    let cartRows = cartItemContainer.getElementsByClassName("cart-list");
+    let total = 0;
+    for (let i = 0; i < cartRows.length; i++) {
+      let cartRow = cartRows[i];
+
+      console.log("total check");
+
+      let priceElement = cartRow.getElementsByClassName("amount")[0];
+      let quantityElement = cartRow.getElementsByClassName("count")[0];
+
+      console.log(priceElement, quantityElement);
+
+      let price = parseFloat(priceElement.innerText.replace("$", ""));
+      let quantity = parseFloat(quantityElement.innerText);
+
+      total = total + price * quantity;
+      console.log(total);
+    }
+    total = Math.round(total * 100) / 100;
+    document.getElementsByClassName("main-color-text")[0].innerText =
+      "$" + total;
   }
 
   /////////////////////////////////////////////////
