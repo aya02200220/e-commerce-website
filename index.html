@@ -18,10 +18,13 @@
   <body>
     <div class="container --nav">
       <nav>
+        <!-- <i class="fa-sharp fa-regular fa-book-open-cover icon-size"></i> -->
         <div class="container">
           <ul class="navbar-left">
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#ranking">Ranking</a></li>
+            <li><a href="#manga">Manga</a></li>
           </ul>
           <!--end navbar-left -->
 
@@ -51,7 +54,7 @@
           <div class="cart-items">
             <!-- <div class="items"> -->
             <ul class="cart-lists">
-              <li class="cart-list">
+              <!-- <li class="cart-list">
                 <div class="cart-row">
                   <div class="image-box">
                     <img
@@ -102,7 +105,7 @@
                     <button class="remove" type="button">REMOVE</button>
                   </div>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -111,19 +114,25 @@
         <!-- <ul id="shopping-cart-items"></ul> -->
 
         <div class="cart-button">
-          <a href="#" class="button --checkout">Checkout</a>
-          <a href="#" class="button --delete">Delete All</a>
+          <a class="button --checkout">Checkout</a>
+          <a class="button --delete">Delete All</a>
         </div>
       </div>
       <!--end shopping-cart -->
     </div>
     <!--end container -->
 
+    <div id="hero-img">
+      <img
+        src="https://cdn.mainichi.jp/vol1/2022/12/01/20221201k0000m040373000p/9.jpg?1"
+        alt="hero-img"
+      />
+    </div>
     <main class="mainPage">
-      <h3>Ranking</h3>
+      <h3 id="ranking">Ranking</h3>
       <div class="item-list-container --ranking">
         <ul class="ranking items-list">
-          <li class="item --ranking">
+          <!-- <li class="item --ranking">
             <div class="item-container --ranking">
               <div class="ranking-num"></div>
               <img
@@ -134,16 +143,15 @@
               <p class="title">Tokyo Ghoul</p>
               <div class="price">$7.0</div>
               <button class="addBtn nannde" type="button">Add to cart</button>
-              <!-- <button class="addBtn" type="button">ADD TO CART</button> -->
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
 
-      <h3>Manga</h3>
+      <h3 id="manga">Manga</h3>
       <div class="item-list-container">
         <ul id="normal" class="normal items-list">
-          <li class="item">
+          <!-- <li class="item">
             <div class="item-container">
               <img
                 class="item-img"
@@ -155,7 +163,7 @@
               <div class="price">$7.0</div>
               <button class="addBtn" type="button">Add to cart</button>
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
     </main>

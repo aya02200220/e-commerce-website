@@ -11,7 +11,8 @@ let toggle = "";
 // const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
 // const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=30`;
 // const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
-const apiUrl = `https://fakestoreapi.com/products`;
+// const apiUrl = `https://fakestoreapi.com/products`;
+const apiUrl = `http://jsonblob.com/api/1073530511632384000`;
 
 window.addEventListener("load", () => {
   fetchRandomImages();
@@ -29,13 +30,13 @@ window.addEventListener("load", () => {
 
   function displayImages(arr) {
     arr.forEach((image, index) => {
-      if (index <= 4) {
+      if (index <= 9) {
         imageList = document.querySelector(".ranking");
         imageList.innerHTML += `
       <li class="item${toggle}">
         <div class="item-container${toggle}">
           <div class="ranking-num">${index + 1}</div>
-          <img class="item-img" src="${image.image}" alt="tokyo ghoul">
+          <img class="item-img" src="${image.image}" alt="${image.title}">
           <p class="title">${image.title}</p>
           <div class="price">$${image.price}</div>
           <button class="addBtn" type="button">Add to cart</button>
@@ -46,7 +47,7 @@ window.addEventListener("load", () => {
         imageList.innerHTML += `
       <li class="item${toggle}">
         <div class="item-container${toggle}">
-          <img class="item-img" src="${image.image}" alt="tokyo ghoul">
+          <img class="item-img" src="${image.image}" alt="${image.title}">
           <p class="title">${image.title}</p>
           <div class="price">$${image.price}</div>
           <button class="addBtn" type="button">Add to cart</button>
@@ -88,18 +89,16 @@ window.addEventListener("load", () => {
       shopItem.getElementsByClassName("price")[0].innerText.replace("$", "")
     );
     let imageSrc = shopItem.getElementsByClassName("item-img")[0].src;
-    console.log(title);
-    console.log(price);
-    console.log(imageSrc);
+    // console.log(title);
+    // console.log(price);
+    // console.log(imageSrc);
     addItemToCart(title, price, imageSrc);
     updateCartTotal();
   }
 
   function addItemToCart(title, price, imageSrc) {
-    console.log("next add: " + title);
     let cartRow = document.createElement("li");
     cartRow.classList.add("cart-list");
-    // let cartItems = document.getElementsByClassName("cart-items")[0];
     let cartItems = document.getElementsByClassName("cart-lists")[0];
     let cartItemNames = cartItems.getElementsByClassName("cart title");
     console.log(cartItemNames);
@@ -147,18 +146,34 @@ window.addEventListener("load", () => {
     updateCartTotal();
   }
 
-  // document
-  //   .getElementsByClassName("btn-purchase")[0]
-  //   .addEventListener("click", purchaseClicked);
+  document
+    .getElementsByClassName("button --checkout")[0]
+    .addEventListener("click", purchaseClicked);
 
-  // function purchaseClicked() {
-  //   alert("Thank you for your purchase");
-  //   let cartItems = document.getElementsByClassName("cart-items")[0];
-  //   while (cartItems.hasChildNodes()) {
-  //     cartItems.removeChild(cartItems.firstChild);
-  //   }
-  // updateCartTotal();
-  // }
+  document
+    .getElementsByClassName("button --delete")[0]
+    .addEventListener("click", allDeleteClicked);
+
+  function purchaseClicked() {
+    let cartItems = document.getElementsByClassName("cart-lists")[0];
+    console.log(cartItems);
+    if (!cartItems.hasChildNodes()) {
+      return alert("Your cart is empty");
+    }
+    alert("Thank you for your purchase");
+    while (cartItems.hasChildNodes()) {
+      cartItems.removeChild(cartItems.firstChild);
+    }
+    updateCartTotal();
+  }
+  function allDeleteClicked() {
+    alert("Cart items all deleted");
+    let cartItems = document.getElementsByClassName("cart-lists")[0];
+    while (cartItems.hasChildNodes()) {
+      cartItems.removeChild(cartItems.firstChild);
+    }
+    updateCartTotal();
+  }
 
   function removeCartItem(event) {
     let buttonClicked = event.target;
