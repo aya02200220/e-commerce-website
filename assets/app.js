@@ -15,7 +15,6 @@ const apiUrl = `https://fakestoreapi.com/products`;
 
 window.addEventListener("load", () => {
   fetchRandomImages();
-
   function fetchRandomImages(params) {
     axios
       .get(apiUrl)
@@ -62,22 +61,22 @@ window.addEventListener("load", () => {
     addToCartButtons.forEach((btn) =>
       btn.addEventListener("click", addToCartClicked)
     );
-    //remove items -----------------------------------------
-    let removeCartItemButtons = document.getElementsByClassName("remove");
-    for (let i = 0; i < removeCartItemButtons.length; i++) {
-      console.log("remove");
-      let button = removeCartItemButtons[i];
-      button.addEventListener("click", removeCartItem);
-    }
-
-    // counter event -----------------------------------------
-    let quantityInputs = document.getElementsByClassName("cart-quantity-input");
-    for (let i = 0; i < quantityInputs.length; i++) {
-      let input = quantityInputs[i];
-      input.addEventListener("change", quantityChanged);
-    }
   }
 
+  //remove items -----------------------------------------
+  let removeCartItemButtons = document.getElementsByClassName("remove");
+  for (let i = 0; i < removeCartItemButtons.length; i++) {
+    console.log("remove");
+    let button = removeCartItemButtons[i];
+    button.addEventListener("click", removeCartItem);
+  }
+
+  // counter event -----------------------------------------
+  let quantityInputs = document.getElementsByClassName("cart-quantity-input");
+  for (let i = 0; i < quantityInputs.length; i++) {
+    let input = quantityInputs[i];
+    input.addEventListener("change", quantityChanged);
+  }
   ///// cart event ////////////////////////////////////////////
   updateCartTotal();
 
@@ -93,7 +92,7 @@ window.addEventListener("load", () => {
     console.log(price);
     console.log(imageSrc);
     addItemToCart(title, price, imageSrc);
-    // updateCartTotal();
+    updateCartTotal();
   }
 
   function addItemToCart(title, price, imageSrc) {
@@ -140,11 +139,12 @@ window.addEventListener("load", () => {
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
     cartRow
-      .getElementsByClassName("btn-danger")[0]
+      .getElementsByClassName("remove")[0]
       .addEventListener("click", removeCartItem);
     cartRow
       .getElementsByClassName("cart-quantity-input")[0]
       .addEventListener("change", quantityChanged);
+    updateCartTotal();
   }
 
   // document
@@ -157,7 +157,7 @@ window.addEventListener("load", () => {
   //   while (cartItems.hasChildNodes()) {
   //     cartItems.removeChild(cartItems.firstChild);
   //   }
-  //   updateCartTotal();
+  // updateCartTotal();
   // }
 
   function removeCartItem(event) {

@@ -41,6 +41,17 @@ nav {
   padding: 20px 0 40px 0;
   background: #f8f8f8;
   font-size: 16px;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  .container {
+    margin: auto;
+    width: 80%;
+  }
+  .container.--nav {
+    position: relative;
+  }
 
   .navbar-left {
     float: left;
@@ -56,6 +67,9 @@ nav {
       a {
         color: #777777;
         text-decoration: none;
+        &#cart {
+          cursor: pointer;
+        }
 
         &:hover {
           color: black;
@@ -63,11 +77,6 @@ nav {
       }
     }
   }
-}
-
-.container {
-  margin: auto;
-  width: 80%;
 }
 
 .badge {
@@ -85,6 +94,7 @@ nav {
 
 .shopping-cart.active {
   opacity: 1 !important;
+  z-index: 3;
 }
 
 .shopping-cart {
@@ -94,12 +104,12 @@ nav {
   margin: 20px 0;
   background: white;
   width: 370px;
-  position: relative;
   border-radius: 3px;
   padding: 20px;
-  position: absolute;
+  position: fixed;
   right: 10%;
-  z-index: 3;
+  top: 5%;
+  z-index: -1;
 
   .shopping-cart-header {
     border-bottom: 1px solid #e8e8e8;
@@ -187,6 +197,10 @@ nav {
       background: lighten($button1, 5%);
     }
   }
+}
+
+.mainPage {
+  margin-top: 110px;
 }
 .item-list-container {
   &.--ranking {
