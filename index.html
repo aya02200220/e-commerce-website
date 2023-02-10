@@ -32,7 +32,6 @@
             >
           </li>
         </ul>
-
         <!--end navbar-right -->
       </div>
       <!--end container -->
@@ -58,6 +57,7 @@
                     alt="kingdom"
                   />
                 </div>
+
                 <div class="about">
                   <p class="cart title">Kingdom</p>
                 </div>
@@ -101,7 +101,7 @@
         </div>
         <!--end shopping-cart-header -->
 
-        <ul id="shopping-cart-items"></ul>
+        <!-- <ul id="shopping-cart-items"></ul> -->
 
         <div class="cart-button">
           <a href="#" class="button --checkout">Checkout</a>
@@ -115,28 +115,47 @@
     <main>
       <h3>Ranking</h3>
       <div class="item-list-container --ranking">
-        <ul id="ranking" class="items-list">
+        <!-- <button class="remove" type="button">REMOVE</button> -->
+        <button class="addBtn" type="button">ADD TO CART test</button>
+        <!-- <button class="addBtn" type="button">ADD TO CART test2</button> -->
+
+        <!-- <ul id="ranking" class="items-list"> -->
+        <ul class="ranking items-list">
           <li class="item --ranking">
             <div class="item-container --ranking">
               <div class="ranking-num"></div>
-
               <img
                 class="item-img"
                 src="/assets/imgs/tokyo-ghoul.jpg"
                 alt="tokyo ghoul"
               />
-
               <p class="title">Tokyo Ghoul</p>
               <div class="price">$7.0</div>
-              <button class="addBtn">Add to cart</button>
+              <button class="addBtn" type="button">ADD TO CART</button>
             </div>
           </li>
         </ul>
+        <div class="ranking items-list">
+          <div class="item --ranking">
+            <div class="item-container --ranking">
+              <div class="ranking-num"></div>
+              <img
+                class="item-img"
+                src="/assets/imgs/tokyo-ghoul.jpg"
+                alt="tokyo ghoul"
+              />
+              <p class="title">Tokyo Ghoul</p>
+              <div class="price">$7.0</div>
+              <button class="remove" type="button">REMOVE</button>
+              <button class="addBtn" type="button">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <h3>Manga</h3>
       <div class="item-list-container">
-        <ul id="normal" class="items-list">
+        <ul id="normal" class="normal items-list">
           <li class="item">
             <div class="item-container">
               <img
@@ -147,7 +166,7 @@
 
               <div class="title">Tokyo Ghoul</div>
               <div class="price">$7.0</div>
-              <button class="addBtn">Add to cart</button>
+              <button class="addBtn" type="button">Add to cart</button>
             </div>
           </li>
         </ul>
