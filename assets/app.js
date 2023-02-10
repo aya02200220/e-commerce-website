@@ -135,7 +135,19 @@ window.addEventListener("load", () => {
       .getElementsByClassName("cart-quantity-input")[0]
       .addEventListener("change", quantityChanged);
 
-    alert(`${title} is added to the cart`);
+    // alert(`${title} is added to the cart`);
+    const message = document.querySelector(".message");
+
+    // message.innerHTML = `"${title}"<br> is added to the cart`;
+    message.innerHTML = `${title}<br> is added to the cart`;
+    message.classList.remove("hidden");
+    message.classList.add("popup-message");
+
+    message.addEventListener("animationend", () => {
+      message.classList.remove("popup-message");
+      message.classList.add("hidden");
+    });
+
     updateCartTotal();
   }
 
@@ -222,5 +234,18 @@ window.addEventListener("load", () => {
     false
   );
 
+  ////////////////////////////////
+  // const message = document.querySelector(".message");
+
+  // document.querySelector(".modal-msg").addEventListener("click", () => {
+  //   message.innerHTML = "testtessss";
+  //   message.classList.remove("hidden");
+  //   message.classList.add("popup-message");
+  // });
+
+  // message.addEventListener("animationend", () => {
+  //   message.classList.remove("popup-message");
+  //   message.classList.add("hidden");
+  // });
   ////////////////////////////////
 });

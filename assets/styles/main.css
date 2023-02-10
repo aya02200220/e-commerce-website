@@ -119,6 +119,8 @@ nav ul li a:hover {
   right: 10%;
   top: 7%;
   z-index: -1;
+  max-height: 70vh;
+  overflow: auto;
 }
 .shopping-cart .shopping-cart-header {
   border-bottom: 1px solid #e8e8e8;
@@ -362,4 +364,87 @@ nav ul li a:hover {
 .cart-lists .cart-list .image-box img {
   height: 60px;
   width: 47px;
+}
+
+.button-box {
+  width: 100%;
+  padding: 8px 16px;
+  margin: 16px auto;
+}
+
+.modal-msg {
+  cursor: pointer;
+  width: 50%;
+  max-width: 300px;
+  height: 2.5em;
+  margin: 8px auto;
+  padding: 4px 0;
+  border-radius: 4px;
+  background-color: blue;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+.modal-msg:hover {
+  opacity: 0.7;
+}
+
+.hidden {
+  display: none;
+}
+
+.message {
+  width: 25%;
+  min-width: 300px;
+  height: 115px;
+  padding: 15px 16px;
+  border-radius: 8px;
+  background: rgb(255, 140, 0);
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 5%;
+  bottom: 10%;
+  color: white;
+}
+
+.popup-message {
+  -webkit-animation: popup 1.5s forwards;
+          animation: popup 1.5s forwards;
+}
+
+@-webkit-keyframes popup {
+  0% {
+    transform: translateY(15%);
+    opacity: 0;
+  }
+  10%, 90% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(15%);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@keyframes popup {
+  0% {
+    transform: translateY(15%);
+    opacity: 0;
+  }
+  10%, 90% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(15%);
+    opacity: 0;
+    pointer-events: none;
+  }
 }/*# sourceMappingURL=main.css.map */
