@@ -262,18 +262,26 @@ nav ul li a:hover {
   list-style: none;
   margin-top: 20px;
 }
-.cart-lists .cart-list {
+.cart-lists .cart-list .cart-row {
   display: flex;
   align-items: center;
 }
-.cart-lists .cart-list .about {
+.cart-lists .cart-list .cart-row .about {
   margin-left: 10px;
   width: 100px;
 }
-.cart-lists .cart-list .counter {
+.cart-lists .cart-list .cart-row .about .cart {
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  line-height: 11px;
+  height: 52px;
+  overflow: auto;
+}
+.cart-lists .cart-list .cart-row .counter {
   margin-left: 10px;
 }
-.cart-lists .cart-list .counter .remove {
+.cart-lists .cart-list .cart-row .counter .remove {
   font-size: 10px;
   padding: 2px 3px;
   height: 28px;
@@ -286,7 +294,7 @@ nav ul li a:hover {
   margin-top: 3px;
   text-decoration: none;
 }
-.cart-lists .cart-list .counter .remove:hover {
+.cart-lists .cart-list .cart-row .counter .remove:hover {
   background: #ff8686;
   border-bottom: solid 1px #001e72;
 }
@@ -294,6 +302,7 @@ nav ul li a:hover {
   margin-left: 20px;
 }
 .cart-lists .cart-list .prices .amount {
+  width: 40px;
   font-weight: 600;
 }
 .cart-lists .cart-list .counter {
@@ -310,4 +319,5 @@ nav ul li a:hover {
 }
 .cart-lists .cart-list .image-box img {
   height: 60px;
+  width: 47px;
 }/*# sourceMappingURL=main.css.map */

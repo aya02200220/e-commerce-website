@@ -292,36 +292,47 @@ nav {
   list-style: none;
   margin-top: 20px;
   .cart-list {
-    display: flex;
-    align-items: center;
+    .cart-row {
+      display: flex;
+      align-items: center;
 
-    .about {
-      margin-left: 10px;
-      width: 100px;
-    }
-    .counter {
-      margin-left: 10px;
-      .remove {
-        font-size: 10px;
-        padding: 2px 3px;
-        height: 28px;
-        width: 55px;
-        background: $delete-button;
-        color: $main-color;
-        border-radius: 4px;
-        margin-left: 12px;
-        cursor: pointer;
-        margin-top: 3px;
-        text-decoration: none;
-        &:hover {
-          background: lighten($delete-button, 7%);
-          border-bottom: solid 1px #001e72;
+      .about {
+        margin-left: 10px;
+        width: 100px;
+        .cart {
+          display: flex;
+          align-items: center;
+          word-wrap: break-word;
+          line-height: 11px;
+          height: 52px;
+          overflow: auto;
+        }
+      }
+      .counter {
+        margin-left: 10px;
+        .remove {
+          font-size: 10px;
+          padding: 2px 3px;
+          height: 28px;
+          width: 55px;
+          background: $delete-button;
+          color: $main-color;
+          border-radius: 4px;
+          margin-left: 12px;
+          cursor: pointer;
+          margin-top: 3px;
+          text-decoration: none;
+          &:hover {
+            background: lighten($delete-button, 7%);
+            border-bottom: solid 1px #001e72;
+          }
         }
       }
     }
     .prices {
       margin-left: 20px;
       .amount {
+        width: 40px;
         font-weight: 600;
       }
     }
@@ -340,6 +351,7 @@ nav {
 
     .image-box img {
       height: 60px;
+      width: 47px;
     }
   }
 }

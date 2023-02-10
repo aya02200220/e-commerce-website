@@ -13,25 +13,26 @@ let toggle = "";
 // const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
 const apiUrl = `https://fakestoreapi.com/products`;
 
-fetchRandomImages();
+window.addEventListener("load", () => {
+  fetchRandomImages();
 
-function fetchRandomImages(params) {
-  axios
-    .get(apiUrl)
-    .then((response) => {
-      // console.log(response);
-      displayImages(response.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+  function fetchRandomImages(params) {
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        // console.log(response);
+        displayImages(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-function displayImages(arr) {
-  arr.forEach((image, index) => {
-    if (index <= 4) {
-      imageList = document.querySelector(".ranking");
-      imageList.innerHTML += `
+  function displayImages(arr) {
+    arr.forEach((image, index) => {
+      if (index <= 4) {
+        imageList = document.querySelector(".ranking");
+        imageList.innerHTML += `
       <li class="item${toggle}">
         <div class="item-container${toggle}">
           <div class="ranking-num">${index + 1}</div>
@@ -41,9 +42,9 @@ function displayImages(arr) {
           <button class="addBtn" type="button">Add to cart</button>
         </li>
         `;
-    } else {
-      imageList = document.querySelector(".normal");
-      imageList.innerHTML += `
+      } else {
+        imageList = document.querySelector(".normal");
+        imageList.innerHTML += `
       <li class="item${toggle}">
         <div class="item-container${toggle}">
           <img class="item-img" src="${image.image}" alt="tokyo ghoul">
@@ -53,47 +54,97 @@ function displayImages(arr) {
           </div>
         </li>
         `;
-    }
-  });
-}
+      }
+    });
 
-///// cart event ////////////////////////////////////////////
-window.addEventListener("load", () => {
+    // add to cart event -----------------------------------------
+    let addToCartButtons = document.querySelectorAll(".addBtn");
+    addToCartButtons.forEach((btn) =>
+      btn.addEventListener("click", addToCartClicked)
+    );
+    //remove items -----------------------------------------
+    let removeCartItemButtons = document.getElementsByClassName("remove");
+    for (let i = 0; i < removeCartItemButtons.length; i++) {
+      console.log("remove");
+      let button = removeCartItemButtons[i];
+      button.addEventListener("click", removeCartItem);
+    }
+
+    // counter event -----------------------------------------
+    let quantityInputs = document.getElementsByClassName("cart-quantity-input");
+    for (let i = 0; i < quantityInputs.length; i++) {
+      let input = quantityInputs[i];
+      input.addEventListener("change", quantityChanged);
+    }
+  }
+
+  ///// cart event ////////////////////////////////////////////
   updateCartTotal();
 
-  //remove items -----------------------------------------
-  let removeCartItemButtons = document.getElementsByClassName("remove");
-  for (let i = 0; i < removeCartItemButtons.length; i++) {
-    let button = removeCartItemButtons[i];
-    button.addEventListener("click", removeCartItem);
-  }
-
-  // counter event -----------------------------------------
-  let quantityInputs = document.getElementsByClassName("cart-quantity-input");
-  for (let i = 0; i < quantityInputs.length; i++) {
-    let input = quantityInputs[i];
-    input.addEventListener("change", quantityChanged);
-  }
-
-  // add to cart event -----------------------------------------
-  let addToCartButtons = document.querySelectorAll(".addBtn");
-  for (let i = 0; i < addToCartButtons.length; i++) {
-    let button = addToCartButtons[i];
-    console.log("addkakuninnyou  ");
-    console.log(button);
-    button.addEventListener("click", addToCartClicked);
-  }
-
-  function addToCartClicked() {
-    console.log("adddd");
-    // let button = event.target;
-    // console.log(button);
-    // let shopItem = button.parentElement.parentElement;
-    // let title = shopItem.getElementsByClassName("cart title")[0].innerText;
-    // let price = shopItem.getElementsByClassName("amount")[0].innerText;
-    // let imageSrc = shopItem.getElementsByClassName("item-img")[0].src;
-    // addItemToCart(title, price, imageSrc);
+  function addToCartClicked(event) {
+    let button = event.target;
+    let shopItem = button.parentElement.parentElement;
+    let title = shopItem.getElementsByClassName("title")[0].innerText;
+    let price = parseFloat(
+      shopItem.getElementsByClassName("price")[0].innerText.replace("$", "")
+    );
+    let imageSrc = shopItem.getElementsByClassName("item-img")[0].src;
+    console.log(title);
+    console.log(price);
+    console.log(imageSrc);
+    addItemToCart(title, price, imageSrc);
     // updateCartTotal();
+  }
+
+  function addItemToCart(title, price, imageSrc) {
+    console.log("next add: " + title);
+    let cartRow = document.createElement("li");
+    cartRow.classList.add("cart-list");
+    // let cartItems = document.getElementsByClassName("cart-items")[0];
+    let cartItems = document.getElementsByClassName("cart-lists")[0];
+    let cartItemNames = cartItems.getElementsByClassName("cart title");
+    console.log(cartItemNames);
+    for (let i = 0; i < cartItemNames.length; i++) {
+      if (cartItemNames[i].innerHTML == title) {
+        alert("This item is already added to the cart");
+        return;
+      }
+    }
+    let cartRowContents = `
+      <li class="cart-list">
+        <div class="cart-row">
+          <div class="image-box">
+            <img
+              class="item-img"
+              src="${imageSrc}"
+              alt=""
+            />
+          </div>
+          <div class="about">
+            <p class="cart title">${title}</p>
+          </div>
+          <div class="prices">
+            <div class="amount">$${price}</div>
+          </div>
+          <div class="cart-quantity cart-column counter">
+            <input
+              class="cart-quantity-input count"
+              type="number"
+              value="1"
+            />
+            <button class="remove" type="button">REMOVE</button>
+          </div>
+        </div>
+      </li>
+    `;
+    cartRow.innerHTML = cartRowContents;
+    cartItems.append(cartRow);
+    cartRow
+      .getElementsByClassName("btn-danger")[0]
+      .addEventListener("click", removeCartItem);
+    cartRow
+      .getElementsByClassName("cart-quantity-input")[0]
+      .addEventListener("change", quantityChanged);
   }
 
   // document
@@ -110,10 +161,9 @@ window.addEventListener("load", () => {
   // }
 
   function removeCartItem(event) {
-    console.log("remove 確認");
-    // let buttonClicked = event.target;
-    // buttonClicked.parentElement.parentElement.remove();
-    // updateCartTotal();
+    let buttonClicked = event.target;
+    buttonClicked.parentElement.parentElement.remove();
+    updateCartTotal();
   }
 
   function quantityChanged(event) {
@@ -127,7 +177,8 @@ window.addEventListener("load", () => {
   function updateCartTotal() {
     let totalQuantityElement = document.getElementsByClassName("badge");
     let cartItemContainer = document.getElementsByClassName("cart-lists")[0];
-    let cartRows = cartItemContainer.getElementsByClassName("cart-list");
+    // let cartRows = cartItemContainer.getElementsByClassName("cart-list");
+    let cartRows = cartItemContainer.getElementsByClassName("cart-row");
     let total = 0;
     let totalQuantity = 0;
 
