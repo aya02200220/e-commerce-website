@@ -1,12 +1,7 @@
 let switchBtn = document.getElementById("cart");
 let cart = document.querySelector(".shopping-cart");
-
-// let imageList = document.querySelector(".items-list");
-// let imageListRanking = document.querySelector(".items-list --ranking");
 let imageList = "";
 let toggle = "";
-
-// http://jsonblob.com/1072984198809403392
 
 // const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
 // const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=30`;
@@ -20,7 +15,6 @@ window.addEventListener("load", () => {
     axios
       .get(apiUrl)
       .then((response) => {
-        // console.log(response);
         displayImages(response.data);
       })
       .catch((err) => {
@@ -78,7 +72,7 @@ window.addEventListener("load", () => {
     let input = quantityInputs[i];
     input.addEventListener("change", quantityChanged);
   }
-  ///// cart event ////////////////////////////////////////////
+  ///// cart events ////////////////////////////////////////////
   updateCartTotal();
 
   function addToCartClicked(event) {
@@ -89,9 +83,6 @@ window.addEventListener("load", () => {
       shopItem.getElementsByClassName("price")[0].innerText.replace("$", "")
     );
     let imageSrc = shopItem.getElementsByClassName("item-img")[0].src;
-    // console.log(title);
-    // console.log(price);
-    // console.log(imageSrc);
     addItemToCart(title, price, imageSrc);
     updateCartTotal();
   }
@@ -143,6 +134,8 @@ window.addEventListener("load", () => {
     cartRow
       .getElementsByClassName("cart-quantity-input")[0]
       .addEventListener("change", quantityChanged);
+
+    alert(`${title} is added to the cart`);
     updateCartTotal();
   }
 
@@ -216,9 +209,6 @@ window.addEventListener("load", () => {
     totalQuantityElement[1].innerText = totalQuantity;
   }
 
-  /////////////////////////////////////////////////
-
-  /////////////////////////////////////////////////
   // switch displaying cart
   let changeElement = (el) => {
     el.classList.toggle("active");

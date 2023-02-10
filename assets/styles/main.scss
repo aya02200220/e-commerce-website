@@ -117,17 +117,18 @@ nav {
 }
 
 .shopping-cart {
+  border: solid 1px #eec95b;
   color: #777777;
   opacity: 0;
   transition: all 0.3s ease;
   margin: 20px 0;
-  background: white;
+  background: #fdfdf7;
   width: 370px;
   border-radius: 3px;
   padding: 20px;
   position: fixed;
   right: 10%;
-  top: 5%;
+  top: 7%;
   z-index: -1;
 
   .shopping-cart-header {
@@ -177,7 +178,7 @@ nav {
   width: 0;
   position: absolute;
   pointer-events: none;
-  border-bottom-color: white;
+  border-bottom-color: #eec95b;
   border-width: 8px;
   margin-left: -8px;
 }
