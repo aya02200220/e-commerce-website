@@ -7,7 +7,9 @@ let toggle = "";
 // const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=30`;
 // const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
 // const apiUrl = `https://fakestoreapi.com/products`;
-const apiUrl = `http://jsonblob.com/api/1073530511632384000`;
+const apiUrl = `https://jsonblob.com/api/1073530511632384000`;
+// https://jsonblob.com/api/1073530511632384000
+// http://jsonblob.com/api/1073530511632384000`
 
 window.addEventListener("load", () => {
   fetchRandomImages();
@@ -32,7 +34,7 @@ window.addEventListener("load", () => {
           <div class="ranking-num">${index + 1}</div>
           <img class="item-img" src="${image.image}" alt="${image.title}">
           <p class="title">${image.title}</p>
-          <div class="price">$${image.price}</div>
+          <div class="price">$${image.price.toFixed(2)}</div>
           <button class="addBtn" type="button">Add to cart</button>
         </li>
         `;
@@ -43,7 +45,7 @@ window.addEventListener("load", () => {
         <div class="item-container${toggle}">
           <img class="item-img" src="${image.image}" alt="${image.title}">
           <p class="title">${image.title}</p>
-          <div class="price">$${image.price}</div>
+          <div class="price">$${image.price.toFixed(2)}</div>
           <button class="addBtn" type="button">Add to cart</button>
           </div>
         </li>
@@ -77,8 +79,9 @@ window.addEventListener("load", () => {
 
   function addToCartClicked(event) {
     let button = event.target;
-    let shopItem = button.parentElement.parentElement;
+    let shopItem = button.parentElement.parentElement.parentElement;
     let title = shopItem.getElementsByClassName("title")[0].innerText;
+
     let price = parseFloat(
       shopItem.getElementsByClassName("price")[0].innerText.replace("$", "")
     );
@@ -113,7 +116,7 @@ window.addEventListener("load", () => {
             <p class="cart title">${title}</p>
           </div>
           <div class="prices">
-            <div class="amount">$${price}</div>
+            <div class="amount">$${price.toFixed(2)}</div>
           </div>
           <div class="cart-quantity cart-column counter">
             <input
@@ -216,7 +219,7 @@ window.addEventListener("load", () => {
     }
     total = Math.round(total * 100) / 100;
     document.getElementsByClassName("main-color-text")[0].innerText =
-      "$" + total;
+      "$" + total.toFixed(2);
     totalQuantityElement[0].innerText = totalQuantity;
     totalQuantityElement[1].innerText = totalQuantity;
   }
