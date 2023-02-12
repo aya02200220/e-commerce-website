@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/styles/main.css" />
+    <script
+      src="https://kit.fontawesome.com/fa4318b983.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.1/axios.min.js"
@@ -43,6 +47,7 @@
 
       <!-- <div class="container"> -->
       <div class="shopping-cart" id="shopping-cart">
+        <i id="cart2" class="fa-solid fa-square-xmark"></i>
         <div class="shopping-cart-header">
           <i class="fa fa-shopping-cart cart-icon"></i
           ><span class="badge">3</span>
@@ -52,7 +57,6 @@
           </div>
 
           <div class="cart-items">
-            <!-- <div class="items"> -->
             <ul class="cart-lists">
               <!-- <li class="cart-list">
                 <div class="cart-row">
@@ -76,7 +80,8 @@
                       type="number"
                       value="5"
                     />
-                    <button class="remove" type="button">REMOVE</button>
+
+                    <i class="fa-solid fa-trash-can remove"></i>
                   </div>
                 </div>
               </li>
@@ -102,7 +107,8 @@
                       type="number"
                       value="2"
                     />
-                    <button class="remove" type="button">REMOVE</button>
+                    <i class="fa-solid fa-trash-can remove"></i>
+
                   </div>
                 </div>
               </li> -->
@@ -123,29 +129,39 @@
     <!--end container -->
 
     <div id="hero-img">
-      <img
-        src="https://cdn.mainichi.jp/vol1/2022/12/01/20221201k0000m040373000p/9.jpg?1"
-        alt="hero-img"
-      />
+      <div class="bg-overlay"></div>
+      <h1 class="main-title">MANGA</h1>
+      <img src="/assets/imgs/bg-jojo.png" alt="hero-img" />
+      <!-- <img src="/assets/imgs/bg-slamdunk.webp" alt="hero-img" /> -->
     </div>
     <main class="mainPage">
       <h3 id="ranking">Ranking</h3>
-      <div class="item-list-container --ranking">
-        <ul class="ranking items-list">
-          <!-- <li class="item --ranking">
+      <div class="arrow-container">
+        <div class="item-list-container --ranking">
+          <ul class="ranking items-list">
+            <!-- <li class="item --ranking">
             <div class="item-container --ranking">
               <div class="ranking-num"></div>
-              <img
-                class="item-img"
-                src="/assets/imgs/tokyo-ghoul.jpg"
-                alt="tokyo ghoul"
-              />
-              <p class="title">Tokyo Ghoul</p>
-              <div class="price">$7.0</div>
-              <button class="addBtn nannde" type="button">Add to cart</button>
+              <div class="img-container">
+                <img
+                  class="item-img"
+                  src="/assets/imgs/tokyo-ghoul.jpg"
+                  alt="tokyo ghoul"
+                />
+                <div class="card-overlay">
+                  <button class="addBtn" type="button">Add to cart</button>
+                </div>
+              </div>
+              <div class="about-item">
+                <p class="title">JoJo's Bizarre Adventure</p>
+                <div class="price">$7.00</div>
+              </div>
             </div>
           </li> -->
-        </ul>
+          </ul>
+        </div>
+        <i class="fa-solid fa-chevron-left arrow --left"></i>
+        <i class="fa-solid fa-chevron-right arrow --right"></i>
       </div>
 
       <h3 id="manga">Manga</h3>
@@ -180,7 +196,12 @@
     <div class="button-box">
       <!-- <button class="modal-msg">Click!</button> -->
     </div>
-    <div class="message hidden">Have a nice day!</div>
+    <div class="messageContainer">
+      <!-- <div class="message hidden">
+        Have a nice day!<br /><br />
+        is added to the cart
+      </div> -->
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.1/axios.min.js"></script>
     <script src="/assets/app.js" async></script>
