@@ -1,15 +1,11 @@
-let switchBtn = document.getElementById("cart");
 let cart = document.querySelector(".shopping-cart");
+let switchBtn1 = document.getElementById("cart");
+let switchBtn2 = document.getElementById("cart2");
 let imageList = "";
 let toggle = "";
 
-// const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
-// const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=30`;
-// const apiKey = "6Mc3o91FMODLzNXOOa8qa96LrpODWubXgYZievZP7xY";
-// const apiUrl = `https://fakestoreapi.com/products`;
 const apiUrl = `https://jsonblob.com/api/1073530511632384000`;
-// https://jsonblob.com/api/1073530511632384000
-// http://jsonblob.com/api/1073530511632384000`
+// const apiUrl = `http://jsonblob.com/api/1073530511632384000`;
 
 window.addEventListener("load", () => {
   fetchRandomImages();
@@ -30,25 +26,42 @@ window.addEventListener("load", () => {
         imageList = document.querySelector(".ranking");
         imageList.innerHTML += `
       <li class="item${toggle}">
-        <div class="item-container${toggle}">
+        <div class="item-container --ranking">
           <div class="ranking-num">${index + 1}</div>
-          <img class="item-img" src="${image.image}" alt="${image.title}">
-          <p class="title">${image.title}</p>
-          <div class="price">$${image.price.toFixed(2)}</div>
-          <button class="addBtn" type="button">Add to cart</button>
-        </li>
+          <div class="img-container">
+            <img
+              class="item-img"
+              src="${image.image}" alt="${image.title}"/>
+            <div class="card-overlay">
+              <button class="addBtn" type="button">Add to cart</button>
+            </div>
+          </div>
+          <div class="about-item">
+            <p class="title">${image.title}</p>
+            <div class="price">$${image.price.toFixed(2)}</div>
+          </div>
+        </div>
+      </li>
         `;
       } else {
         imageList = document.querySelector(".normal");
         imageList.innerHTML += `
       <li class="item${toggle}">
-        <div class="item-container${toggle}">
-          <img class="item-img" src="${image.image}" alt="${image.title}">
-          <p class="title">${image.title}</p>
-          <div class="price">$${image.price.toFixed(2)}</div>
-          <button class="addBtn" type="button">Add to cart</button>
+        <div class="item-container">
+          <div class="img-container">
+            <img
+              class="item-img"
+              src="${image.image}" alt="${image.title}"/>
+            <div class="card-overlay">
+              <button class="addBtn" type="button">Add to cart</button>
+            </div>
           </div>
-        </li>
+          <div class="about-item">
+            <p class="title">${image.title}</p>
+            <div class="price">$${image.price.toFixed(2)}</div>
+          </div>
+        </div>
+      </li>
         `;
       }
     });
@@ -124,7 +137,7 @@ window.addEventListener("load", () => {
               type="number"
               value="1"
             />
-            <button class="remove" type="button">REMOVE</button>
+            <i class="fa-solid fa-trash-can remove"></i>
           </div>
         </div>
       </li>
@@ -137,21 +150,26 @@ window.addEventListener("load", () => {
     cartRow
       .getElementsByClassName("cart-quantity-input")[0]
       .addEventListener("change", quantityChanged);
+    updateCartTotal();
 
-    // alert(`${title} is added to the cart`);
-    const message = document.querySelector(".message");
-
-    // message.innerHTML = `"${title}"<br> is added to the cart`;
-    message.innerHTML = `${title}<br> is added to the cart`;
-    message.classList.remove("hidden");
-    message.classList.add("popup-message");
+    // const message = document.querySelector(".message");
+    let messageContainer =
+      document.getElementsByClassName("messageContainer")[0];
+    let messageBlock = document.createElement("div");
+    messageBlock.remove();
+    messageBlock.classList.add("message");
+    messageBlock.classList.add("hidden");
+    messageBlock.innerHTML = `${title}<br /><br /> is added to the cart!`;
+    messageContainer.append(messageBlock);
+    messageBlock.classList.remove("hidden");
+    messageBlock.classList.add("popup-message");
 
     message.addEventListener("animationend", () => {
       message.classList.remove("popup-message");
       message.classList.add("hidden");
+      messageContainer.removeChild(messageBlock);
+      // messageBlock.remove();
     });
-
-    updateCartTotal();
   }
 
   document
@@ -200,7 +218,6 @@ window.addEventListener("load", () => {
   function updateCartTotal() {
     let totalQuantityElement = document.getElementsByClassName("badge");
     let cartItemContainer = document.getElementsByClassName("cart-lists")[0];
-    // let cartRows = cartItemContainer.getElementsByClassName("cart-list");
     let cartRows = cartItemContainer.getElementsByClassName("cart-row");
     let total = 0;
     let totalQuantity = 0;
@@ -229,26 +246,18 @@ window.addEventListener("load", () => {
     el.classList.toggle("active");
   };
 
-  switchBtn.addEventListener(
+  switchBtn1.addEventListener(
     "click",
     () => {
       changeElement(cart);
     },
     false
   );
-
-  ////////////////////////////////
-  // const message = document.querySelector(".message");
-
-  // document.querySelector(".modal-msg").addEventListener("click", () => {
-  //   message.innerHTML = "testtessss";
-  //   message.classList.remove("hidden");
-  //   message.classList.add("popup-message");
-  // });
-
-  // message.addEventListener("animationend", () => {
-  //   message.classList.remove("popup-message");
-  //   message.classList.add("hidden");
-  // });
-  ////////////////////////////////
+  switchBtn2.addEventListener(
+    "click",
+    () => {
+      changeElement(cart);
+    },
+    false
+  );
 });

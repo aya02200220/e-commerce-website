@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 *,
@@ -10,14 +11,31 @@
 
 body {
   font: 14px/22px "Lato", Arial, sans-serif;
-  background: #fffbd3;
+  font-family: "Gill Sans", sans-serif;
+  background: rgb(229, 225, 218);
 }
 
 #hero-img {
-  margin: 20px 20px;
+  position: relative;
+}
+#hero-img .bg-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(70, 82, 116, 0.584314);
+}
+#hero-img h1.main-title {
+  position: absolute;
+  font-size: 145px;
+  height: 100%;
+  top: 50%;
+  color: rgba(255, 255, 255, 0.936);
+  left: 50px;
+  font-weight: 100;
+  text-shadow: 2px 2px 3px #666;
 }
 #hero-img img {
-  margin-top: 48px;
+  margin-top: 61px;
   width: 100%;
 }
 
@@ -26,12 +44,15 @@ main {
 }
 
 h3 {
-  font-size: 50px;
-  margin-top: 50px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 40px;
   text-transform: uppercase;
-  color: rgb(220, 135, 31);
+  color: #2c2b2b;
   padding-top: 77px;
   margin-top: -50px;
+  margin-left: 120px;
+  font-weight: 400;
+  text-shadow: 2px 2px 3px #666;
 }
 
 .lighter-text {
@@ -42,23 +63,19 @@ h3 {
   font-size: 20px;
 }
 
-.icon-size {
-  font-size: 9rem;
-  z-index: 3;
-  color: #001e72;
-}
-
 nav {
-  z-index: 1;
+  z-index: 3;
   height: 50px;
   padding: 20px 0 40px 0;
   background: #cbe1e7;
-  background: #eec95b;
-  font-size: 16px;
+  background: #2c2b2b;
+  background: #2c2b2b;
+  font-size: 18px;
   display: flex;
   position: fixed;
   width: 100%;
   top: 0;
+  text-transform: uppercase;
 }
 nav .container {
   margin: auto;
@@ -85,7 +102,18 @@ nav ul li a#cart {
   cursor: pointer;
 }
 nav ul li a:hover {
-  color: black;
+  color: rgb(174, 174, 174);
+}
+
+.fa-square-xmark {
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.fa-square-xmark:hover {
+  color: #465274;
 }
 
 .badge {
@@ -107,15 +135,16 @@ nav ul li a:hover {
 }
 
 .shopping-cart {
-  border: solid 1px #eec95b;
+  border: solid 1px #777777;
   color: #777777;
   opacity: 0;
   transition: all 0.3s ease;
   margin: 20px 0;
   background: #fdfdf7;
-  width: 370px;
+  width: 375px;
   border-radius: 3px;
-  padding: 20px;
+  padding: 24px;
+  padding-top: 20px;
   position: fixed;
   right: 10%;
   top: 7%;
@@ -124,6 +153,7 @@ nav ul li a:hover {
   overflow: auto;
 }
 .shopping-cart .shopping-cart-header {
+  margin-top: 5px;
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 15px;
 }
@@ -146,7 +176,7 @@ nav ul li a:hover {
   font-size: 16px;
 }
 .shopping-cart .shopping-cart-items .item-price {
-  color: #001e72;
+  color: #2c2b2b;
   margin-right: 8px;
 }
 .shopping-cart .shopping-cart-items .item-quantity {
@@ -207,11 +237,26 @@ nav ul li a:hover {
 .mainPage {
   margin-top: 40px;
 }
+.mainPage .arrow-container {
+  position: relative;
+}
+.mainPage .arrow {
+  position: absolute;
+  font-size: 37px;
+  top: 50%;
+  color: #777777;
+}
+.mainPage .arrow.--left {
+  left: 80px;
+}
+.mainPage .arrow.--right {
+  right: 80px;
+}
 
 .item-list-container.--ranking {
-  height: 420px;
+  position: relative;
+  height: 380px;
   overflow-x: scroll;
-  background-color: rgb(255, 232, 177);
 }
 
 .clearfix:after {
@@ -221,13 +266,15 @@ nav ul li a:hover {
 }
 
 .item-list-container {
+  margin-top: 10px;
   border-radius: 5px;
   padding: 16px 8px;
-  margin: 20px 42px;
-  background-color: rgb(255, 246, 179);
+  margin: 20px 120px;
+  background-color: white;
 }
 
 .ranking-num {
+  border: solid 1px white;
   position: absolute;
   z-index: 1;
   margin-left: 7px;
@@ -238,10 +285,38 @@ nav ul li a:hover {
   border-radius: 50px;
   background-color: rgb(248, 169, 0);
   font: 20px;
-  color: #e8e8e8;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ranking.items-list {
+  justify-content: inherit;
+  flex-wrap: nowrap;
+}
+.ranking.items-list:last-child {
+  margin-right: 20px;
+}
+.ranking.items-list.--ranking {
+  overflow-x: scroll;
+  /* スクロールバーの幅と高さを設定する */
+  /* スクロールバーの形を設定する */
+  /* スクロールバーの色を設定する */
+}
+.ranking.items-list.--ranking::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.ranking.items-list.--ranking::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+}
+.ranking.items-list.--ranking::-webkit-scrollbar-thumb {
+  --bg-opacity: 1;
+  background-color: black;
+}
+.ranking.items-list .item:last-child {
+  margin-right: 20px;
 }
 
 .items-list {
@@ -254,25 +329,23 @@ nav ul li a:hover {
   align-items: center;
 }
 .items-list .item {
+  margin: 7px 20px;
   margin: 0 17px;
   margin-bottom: 20px;
   border-radius: 9px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-}
-.items-list .item.--ranking {
-  justify-content: center;
-  flex-wrap: nowrap;
+  min-width: 206px;
+  max-width: 206px;
 }
 .items-list .item .item-container {
-  background: #fffbd3;
-  width: 230px;
+  background: floralwhite;
   padding-top: 8px;
   padding-bottom: 5px;
-  min-height: 360px;
+  min-height: 335px;
   text-align: center;
 }
 .items-list .item .item-container .item-img {
-  margin-top: 15px;
+  margin-top: 0;
   border-radius: 5px;
   min-height: 260px;
   max-height: 260px;
@@ -280,9 +353,12 @@ nav ul li a:hover {
 }
 .items-list .item .item-container .about-item {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  /* justify-content: center; */
+  padding: 0 25px;
+  justify-content: space-between;
   align-items: center;
-  margin: 0 22px;
+  /* margin: 0 22px; */
   margin-top: 5px;
 }
 .items-list .item .item-container .about-item .price {
@@ -296,8 +372,10 @@ nav ul li a:hover {
   font-size: 15px;
   height: 50px;
   word-wrap: break-word;
-  line-height: 15px;
+  line-height: 16px;
   overflow: auto;
+  text-align: center;
+  width: 68%;
 }
 
 .CartContainer {
@@ -310,7 +388,7 @@ nav ul li a:hover {
 
 .cart-lists {
   list-style: none;
-  margin-top: 20px;
+  margin-top: 17px;
 }
 .cart-lists .cart-list .cart-row {
   display: flex;
@@ -332,21 +410,11 @@ nav ul li a:hover {
   margin-left: 10px;
 }
 .cart-lists .cart-list .cart-row .counter .remove {
-  font-size: 10px;
-  padding: 2px 3px;
-  height: 28px;
-  width: 55px;
-  background: rgb(255, 98, 98);
-  color: #fffbd3;
-  border-radius: 4px;
-  margin-left: 12px;
+  font-size: 18px;
   cursor: pointer;
-  margin-top: 3px;
-  text-decoration: none;
 }
 .cart-lists .cart-list .cart-row .counter .remove:hover {
-  background: #ff8686;
-  border-bottom: solid 1px #001e72;
+  color: #abb0be;
 }
 .cart-lists .cart-list .prices {
   margin-left: 20px;
@@ -358,7 +426,7 @@ nav ul li a:hover {
 .cart-lists .cart-list .counter {
   width: 30%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 .cart-lists .cart-list .counter .cart-quantity-input {
@@ -395,32 +463,28 @@ nav ul li a:hover {
   opacity: 0.7;
 }
 
-.hidden {
-  display: none;
-}
-
 .message {
   width: 25%;
   min-width: 300px;
   height: 115px;
-  padding: 15px 16px;
+  padding: 23px 16px;
   border-radius: 8px;
-  background: rgb(255, 140, 0);
-  font-size: 26px;
-  line-height: 30px;
+  background: rgba(0, 21, 38, 0.869);
+  font-size: 21px;
+  line-height: 18px;
   font-weight: bold;
+  position: fixed;
   text-align: center;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  left: 5%;
-  bottom: 10%;
+  left: 4%;
+  bottom: 4%;
   color: white;
+  z-index: 3;
 }
-
 .popup-message {
-  -webkit-animation: popup 1.5s forwards;
-          animation: popup 1.5s forwards;
+  -webkit-animation: popup 2s forwards;
+          animation: popup 2s forwards;
 }
 
 @-webkit-keyframes popup {
@@ -456,11 +520,8 @@ nav ul li a:hover {
 }
 .item-container {
   border: 1px solid #ddd;
-  width: 300px;
-  height: 226px;
   margin: 0 auto;
   overflow: hidden;
-  cursor: pointer;
 }
 .item-container img {
   width: 100%;
@@ -483,7 +544,7 @@ li.item .card-overlay {
   left: -100%;
   bottom: 0;
   color: #fff;
-  z-index: 10;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -500,12 +561,12 @@ li.item .about-item {
   position: absolute;
   right: 0;
   bottom: -5px;
-  z-index: 10;
   transition: right 0.5s;
 }
 li.item .addBtn {
   width: 94%;
-  height: 78%;
+  height: 100%;
+  margin-bottom: 6px;
   /* margin-top: 7px; */
   color: #d3ab55;
   background-color: #fff;
@@ -522,6 +583,7 @@ li.item .addBtn {
 }
 li.item .addBtn:hover {
   background-color: #cc8c03;
+  border: solid 1px white;
   color: #fff;
 }
 
