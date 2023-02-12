@@ -255,7 +255,7 @@ nav ul li a:hover {
 
 .item-list-container.--ranking {
   position: relative;
-  height: 380px;
+  height: 385px;
   overflow-x: scroll;
 }
 
