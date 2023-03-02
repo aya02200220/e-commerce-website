@@ -3,6 +3,9 @@ let switchBtn1 = document.getElementById("cart");
 let switchBtn2 = document.getElementById("cart2");
 let imageList = "";
 let toggle = "";
+let favArr = JSON.parse(localStorage.getItem("favs")) || [];
+
+// localStorage.removeItem('randoms');
 
 const apiUrl = `https://jsonblob.com/api/1073530511632384000`;
 // const apiUrl = `http://jsonblob.com/api/1073530511632384000`;
@@ -14,6 +17,7 @@ window.addEventListener("load", () => {
       .get(apiUrl)
       .then((response) => {
         displayImages(response.data);
+        // displayRndImages(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -21,14 +25,47 @@ window.addEventListener("load", () => {
   }
 
   function displayImages(arr) {
-    arr.forEach((image, index) => {
-      if (index <= 9) {
-        imageList = document.querySelector(".ranking");
-        imageList.innerHTML += `
+    /** 重複チック用配列 */
+    let randoms = [];
+    let randomArr = JSON.parse(localStorage.getItem("randoms")) || [];
+    /** 最小値と最大値 */
+    let min = 1;
+    let max = arr.length;
+    console.log(randomArr);
+
+    /** 重複チェックしながら乱数作成 */
+    // let arrCheck = localStorage.getItem("randomArr");
+    // arrCheck = JSON.parse(arrCheck);
+    // console.log(arrCheck);
+    if (randomArr.length === 0) {
+      for (i = min; i <= 10; i++) {
+        while (true) {
+          let tmp = intRandom(min, max);
+          if (!randoms.includes(tmp)) {
+            console.log(tmp);
+            randoms.push(tmp);
+            randomArr.push(arr[tmp - 1]);
+            break;
+          }
+        }
+      }
+      localStorage.setItem("randoms", JSON.stringify(randomArr));
+    }
+
+    /** min以上max以下の整数値の乱数を返す */
+    function intRandom(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    randomArr.forEach((image, index) => {
+      imageList = document.querySelector(".ranking");
+      imageList.innerHTML += `
       <li class="item${toggle}">
         <div class="item-container --ranking">
           <div class="ranking-num">${index + 1}</div>
           <div class="img-container">
+          <div class="unique-id" style="display: none">${image.id}</div>
+          <div class="fav-icon like-no"></div>
             <img
               class="item-img"
               src="${image.image}" alt="${image.title}"/>
@@ -43,12 +80,37 @@ window.addEventListener("load", () => {
         </div>
       </li>
         `;
-      } else {
-        imageList = document.querySelector(".normal");
-        imageList.innerHTML += `
+    });
+    arr.forEach((image, index) => {
+      // if (index <= 9) {
+      //   imageList = document.querySelector(".ranking");
+      //   imageList.innerHTML += `
+      // <li class="item${toggle}">
+      //   <div class="item-container --ranking">
+      //     <div class="ranking-num">${index + 1}</div>
+      //     <div class="img-container">
+      //       <img
+      //         class="item-img"
+      //         src="${image.image}" alt="${image.title}"/>
+      //       <div class="card-overlay">
+      //         <button class="addBtn" type="button">Add to cart</button>
+      //       </div>
+      //     </div>
+      //     <div class="about-item">
+      //       <p class="title">${image.title}</p>
+      //       <div class="price">$${image.price.toFixed(2)}</div>
+      //     </div>
+      //   </div>
+      // </li>
+      //   `;
+      // } else {
+      imageList = document.querySelector(".normal");
+      imageList.innerHTML += `
       <li class="item${toggle}">
         <div class="item-container">
           <div class="img-container">
+          <div class="unique-id" style="display: none">${image.id}</div>
+          <div class="fav-icon like-no"></div>
             <img
               class="item-img"
               src="${image.image}" alt="${image.title}"/>
@@ -63,8 +125,47 @@ window.addEventListener("load", () => {
         </div>
       </li>
         `;
-      }
+      // }
     });
+
+    // Favorite events
+    const listenForLikes = () => {
+      const likes = document.querySelectorAll(".fav-icon");
+      likes.forEach((like) => {
+        like.addEventListener("click", (event) => {
+          event.target.classList.toggle("like-no");
+          event.target.classList.toggle("like-yes");
+          if (event.target.classList.contains("like-yes")) {
+            console.log("✅💾 Saving Favorite...");
+
+            // favs.push();
+            localStorage.setItem("favs", JSON.stringify(randomArr));
+            console.log("呼び出す前： " + event);
+            getFaveData(event);
+          } else {
+            console.log("❌ Removing Favorite...");
+            // getFaveData(event.target);
+          }
+        });
+      });
+    };
+
+    listenForLikes();
+
+    const getFaveData = (elem) => {
+      let button = elem.target;
+      let shopItem = button.parentElement.parentElement;
+
+      let id = shopItem.getElementsByClassName("unique-id")[0].innerText;
+      let title = shopItem.getElementsByClassName("title")[0].innerText;
+      let price = parseFloat(
+        shopItem.getElementsByClassName("price")[0].innerText.replace("$", "")
+      );
+      let image = shopItem.getElementsByClassName("item-img")[0].src;
+      // addItemToCart(title, price, imageSrc);
+      const faveObj = { id, title, price, image };
+      console.log(faveObj);
+    };
 
     // add to cart event -----------------------------------------
     let addToCartButtons = document.querySelectorAll(".addBtn");
@@ -164,12 +265,12 @@ window.addEventListener("load", () => {
     messageBlock.classList.remove("hidden");
     messageBlock.classList.add("popup-message");
 
-    message.addEventListener("animationend", () => {
-      message.classList.remove("popup-message");
-      message.classList.add("hidden");
-      messageContainer.removeChild(messageBlock);
-      // messageBlock.remove();
-    });
+    // message.addEventListener("animationend", () => {
+    //   message.classList.remove("popup-message");
+    //   message.classList.add("hidden");
+    //   messageContainer.removeChild(messageBlock);
+    //   // messageBlock.remove();
+    // });
   }
 
   document

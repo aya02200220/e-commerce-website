@@ -257,6 +257,7 @@ nav ul li a:hover {
   position: relative;
   height: 385px;
   overflow-x: scroll;
+  padding-right: 100px;
 }
 
 .clearfix:after {
@@ -269,7 +270,7 @@ nav ul li a:hover {
   margin-top: 10px;
   border-radius: 5px;
   padding: 16px 8px;
-  margin: 20px 120px;
+  margin: 20px 11%;
   background-color: white;
 }
 
@@ -278,12 +279,13 @@ nav ul li a:hover {
   position: absolute;
   z-index: 1;
   margin-left: 7px;
+  margin-top: 4px;
   margin-bottom: 6px;
   font-weight: 900;
   width: 40px;
   height: 30px;
   border-radius: 50px;
-  background-color: rgb(248, 169, 0);
+  background-color: rgb(208, 128, 0);
   font: 20px;
   color: white;
   display: flex;
@@ -329,33 +331,32 @@ nav ul li a:hover {
   align-items: center;
 }
 .items-list .item {
-  margin: 7px 20px;
-  margin: 0 17px;
-  margin-bottom: 20px;
-  border-radius: 9px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  min-width: 206px;
-  max-width: 206px;
+  margin: 0 9px;
+  margin-bottom: 45px;
+  border-radius: 9px;
+  min-width: 170px;
+  max-width: 170px;
 }
 .items-list .item .item-container {
   background: floralwhite;
-  padding-top: 8px;
+  padding-top: 0;
   padding-bottom: 5px;
-  min-height: 335px;
+  min-height: 324px;
   text-align: center;
 }
 .items-list .item .item-container .item-img {
   margin-top: 0;
   border-radius: 5px;
-  min-height: 260px;
-  max-height: 260px;
-  width: 190px;
+  min-height: 250px;
+  max-height: 250px;
+  width: 100%;
 }
 .items-list .item .item-container .about-item {
   display: flex;
   width: 100%;
   /* justify-content: center; */
-  padding: 0 25px;
+  padding: 0 10px;
   justify-content: space-between;
   align-items: center;
   /* margin: 0 22px; */
@@ -482,6 +483,10 @@ nav ul li a:hover {
   color: white;
   z-index: 3;
 }
+.message .hidden {
+  display: none;
+}
+
 .popup-message {
   -webkit-animation: popup 2s forwards;
           animation: popup 2s forwards;
@@ -518,6 +523,36 @@ nav ul li a:hover {
     pointer-events: none;
   }
 }
+.img-container .fav-icon.like-no:before {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  font-size: 30px;
+  z-index: 1;
+  right: 8px;
+  top: 8px;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+}
+.img-container .fav-icon.like-no:hover:before {
+  color: red;
+}
+.img-container .fav-icon.like-yes:before {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  font-weight: 900;
+  font-size: 30px;
+  z-index: 1;
+  right: 8px;
+  top: 8px;
+  color: red;
+  text-shadow: 1px 1px 2px #000;
+}
+.img-container .fav-icon.like-yes:hover {
+  color: red;
+}
+
 .item-container {
   border: 1px solid #ddd;
   margin: 0 auto;
@@ -568,14 +603,14 @@ li.item .addBtn {
   height: 100%;
   margin-bottom: 6px;
   /* margin-top: 7px; */
-  color: #d3ab55;
-  background-color: #fff;
+  color: #d6a233;
+  background-color: #ffffff;
   font-family: "Josefin Sans", sans-serif;
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 1px solid #d3ab55;
+  border: 2px solid #d6a233;
   border-radius: 9px;
   outline: none;
   cursor: pointer;
@@ -630,4 +665,5 @@ li.item .addBtn:hover {
     width: 100px;
     height: 30px;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+/*# sourceMappingURL=main.css.map */
