@@ -611,8 +611,9 @@ nav {
     color: red;
     text-shadow: 1px 1px 2px #000;
   }
-  .fav-icon.like-yes:hover {
-    color: red;
+  .fav-icon.like-yes:hover:before {
+    color: white;
+    // font-weight: 100;
   }
 }
 .item-container {

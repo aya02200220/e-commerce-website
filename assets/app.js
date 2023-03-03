@@ -1,9 +1,13 @@
 let cart = document.querySelector(".shopping-cart");
 let switchBtn1 = document.getElementById("cart");
 let switchBtn2 = document.getElementById("cart2");
+
+let favArr = JSON.parse(localStorage.getItem("favs")) || [];
+
+let favCount = document.querySelector(".favCount");
+favCount.innerHTML = favArr.length || 0;
 let imageList = "";
 let toggle = "";
-let favArr = JSON.parse(localStorage.getItem("favs")) || [];
 
 // localStorage.removeItem('randoms');
 
@@ -31,18 +35,13 @@ window.addEventListener("load", () => {
     /** 最小値と最大値 */
     let min = 1;
     let max = arr.length;
-    console.log(randomArr);
 
     /** 重複チェックしながら乱数作成 */
-    // let arrCheck = localStorage.getItem("randomArr");
-    // arrCheck = JSON.parse(arrCheck);
-    // console.log(arrCheck);
     if (randomArr.length === 0) {
       for (i = min; i <= 10; i++) {
         while (true) {
           let tmp = intRandom(min, max);
           if (!randoms.includes(tmp)) {
-            console.log(tmp);
             randoms.push(tmp);
             randomArr.push(arr[tmp - 1]);
             break;
@@ -65,7 +64,9 @@ window.addEventListener("load", () => {
           <div class="ranking-num">${index + 1}</div>
           <div class="img-container">
           <div class="unique-id" style="display: none">${image.id}</div>
-          <div class="fav-icon like-no"></div>
+          <div class="fav-icon ${
+            favArr.find((fav) => fav.id == image.id) ? "like-yes" : "like-no"
+          }"></div>
             <img
               class="item-img"
               src="${image.image}" alt="${image.title}"/>
@@ -110,7 +111,9 @@ window.addEventListener("load", () => {
         <div class="item-container">
           <div class="img-container">
           <div class="unique-id" style="display: none">${image.id}</div>
-          <div class="fav-icon like-no"></div>
+          <div class="fav-icon ${
+            favArr.find((fav) => fav.id == image.id) ? "like-yes" : "like-no"
+          }"></div>
             <img
               class="item-img"
               src="${image.image}" alt="${image.title}"/>
@@ -135,16 +138,13 @@ window.addEventListener("load", () => {
         like.addEventListener("click", (event) => {
           event.target.classList.toggle("like-no");
           event.target.classList.toggle("like-yes");
+          // event.target.classList.toggle("fa-beat");
           if (event.target.classList.contains("like-yes")) {
-            console.log("✅💾 Saving Favorite...");
-
-            // favs.push();
-            localStorage.setItem("favs", JSON.stringify(randomArr));
-            console.log("呼び出す前： " + event);
+            // console.log("✅💾 Saving Favorite...");
             getFaveData(event);
           } else {
-            console.log("❌ Removing Favorite...");
-            // getFaveData(event.target);
+            // console.log("❌ Removing Favorite...");
+            getFaveData(event);
           }
         });
       });
@@ -162,9 +162,29 @@ window.addEventListener("load", () => {
         shopItem.getElementsByClassName("price")[0].innerText.replace("$", "")
       );
       let image = shopItem.getElementsByClassName("item-img")[0].src;
-      // addItemToCart(title, price, imageSrc);
       const faveObj = { id, title, price, image };
-      console.log(faveObj);
+      favCheck(faveObj);
+    };
+
+    const favCheck = (obj) => {
+      const { id, title, price, image } = obj;
+      const faveObj = { id, title, price, image };
+
+      let existingFavs = favArr.find((fav) => fav.id == obj.id);
+      console.log("existingFavs", existingFavs);
+      console.log("一覧表示", favArr);
+      if (existingFavs) {
+        console.log("すでに格納済み");
+        favArr = favArr.filter((fav) => fav.id !== obj.id);
+        localStorage.setItem("favs", JSON.stringify(favArr));
+        console.log("格納済みなので削除 ", favArr);
+        favCount.innerHTML--;
+      } else {
+        console.log("新しく追加");
+        favArr.push(faveObj);
+        localStorage.setItem("favs", JSON.stringify(favArr));
+        favCount.innerHTML++;
+      }
     };
 
     // add to cart event -----------------------------------------
