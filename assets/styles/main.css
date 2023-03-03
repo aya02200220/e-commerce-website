@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font: 14px/22px "Lato", Arial, sans-serif;
   font-family: "Gill Sans", sans-serif;
@@ -98,6 +102,20 @@ nav ul li a {
   color: #777777;
   text-decoration: none;
 }
+nav ul li a .favCount {
+  background-color: #6394f8;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 7px;
+  margin-bottom: 5px;
+  margin-left: 6px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
 nav ul li a#cart {
   cursor: pointer;
 }
@@ -123,7 +141,9 @@ nav ul li a:hover {
   display: inline-block;
   font-size: 12px;
   line-height: 1;
-  padding: 3px 7px;
+  padding: 4px 7px;
+  margin-bottom: 5px;
+  margin-left: 6px;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
@@ -247,16 +267,18 @@ nav ul li a:hover {
   color: #777777;
 }
 .mainPage .arrow.--left {
-  left: 80px;
+  left: 117px;
 }
 .mainPage .arrow.--right {
-  right: 80px;
+  right: 117px;
 }
 
 .item-list-container.--ranking {
   position: relative;
   height: 385px;
   overflow-x: scroll;
+  padding-right: 100px;
+  padding-top: 61px;
 }
 
 .clearfix:after {
@@ -269,7 +291,8 @@ nav ul li a:hover {
   margin-top: 10px;
   border-radius: 5px;
   padding: 16px 8px;
-  margin: 20px 120px;
+  padding-top: 37px;
+  margin: 20px 11%;
   background-color: white;
 }
 
@@ -278,12 +301,13 @@ nav ul li a:hover {
   position: absolute;
   z-index: 1;
   margin-left: 7px;
+  margin-top: 4px;
   margin-bottom: 6px;
   font-weight: 900;
   width: 40px;
   height: 30px;
   border-radius: 50px;
-  background-color: rgb(248, 169, 0);
+  background-color: rgb(208, 128, 0);
   font: 20px;
   color: white;
   display: flex;
@@ -294,6 +318,9 @@ nav ul li a:hover {
 .ranking.items-list {
   justify-content: inherit;
   flex-wrap: nowrap;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
 }
 .ranking.items-list:last-child {
   margin-right: 20px;
@@ -329,33 +356,32 @@ nav ul li a:hover {
   align-items: center;
 }
 .items-list .item {
-  margin: 7px 20px;
-  margin: 0 17px;
-  margin-bottom: 20px;
-  border-radius: 9px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  min-width: 206px;
-  max-width: 206px;
+  margin: 0 9px;
+  margin-bottom: 45px;
+  border-radius: 9px;
+  min-width: 170px;
+  max-width: 170px;
 }
 .items-list .item .item-container {
   background: floralwhite;
-  padding-top: 8px;
+  padding-top: 0;
   padding-bottom: 5px;
-  min-height: 335px;
+  min-height: 324px;
   text-align: center;
 }
 .items-list .item .item-container .item-img {
   margin-top: 0;
   border-radius: 5px;
-  min-height: 260px;
-  max-height: 260px;
-  width: 190px;
+  min-height: 250px;
+  max-height: 250px;
+  width: 100%;
 }
 .items-list .item .item-container .about-item {
   display: flex;
   width: 100%;
   /* justify-content: center; */
-  padding: 0 25px;
+  padding: 0 10px;
   justify-content: space-between;
   align-items: center;
   /* margin: 0 22px; */
@@ -482,6 +508,10 @@ nav ul li a:hover {
   color: white;
   z-index: 3;
 }
+.message .hidden {
+  display: none;
+}
+
 .popup-message {
   -webkit-animation: popup 2s forwards;
           animation: popup 2s forwards;
@@ -518,6 +548,38 @@ nav ul li a:hover {
     pointer-events: none;
   }
 }
+.img-container .fav-icon.like-no:before {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  font-size: 30px;
+  z-index: 1;
+  right: 8px;
+  top: 8px;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+  transition: 0.3s;
+}
+.img-container .fav-icon.like-no:hover:before {
+  color: red;
+}
+.img-container .fav-icon.like-yes:before {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  font-weight: 900;
+  font-size: 30px;
+  z-index: 1;
+  right: 8px;
+  top: 8px;
+  color: red;
+  transition: 0.3s;
+  text-shadow: 1px 1px 2px #000;
+}
+.img-container .fav-icon.like-yes:hover:before {
+  color: white;
+}
+
 .item-container {
   border: 1px solid #ddd;
   margin: 0 auto;
@@ -568,14 +630,14 @@ li.item .addBtn {
   height: 100%;
   margin-bottom: 6px;
   /* margin-top: 7px; */
-  color: #d3ab55;
-  background-color: #fff;
+  color: #d6a233;
+  background-color: #ffffff;
   font-family: "Josefin Sans", sans-serif;
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 1px solid #d3ab55;
+  border: 2px solid #d6a233;
   border-radius: 9px;
   outline: none;
   cursor: pointer;
@@ -630,4 +692,101 @@ li.item .addBtn:hover {
     width: 100px;
     height: 30px;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+.fav-msg h3 {
+  margin-top: 45px;
+}
+
+.fav-text {
+  font-size: 50px;
+  margin-top: 200px;
+  text-align: center;
+}
+
+.fav-container {
+  width: 100%;
+  margin-top: 30px;
+}
+.fav-container #fav-lists {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 212px;
+}
+.fav-container #fav-lists .fav-list {
+  margin: 0 20px;
+  margin-bottom: 26px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+.fav-container #fav-lists .fav-item-container {
+  max-width: 300px;
+}
+.fav-container #fav-lists .fav-item-container .fav-img-container {
+  display: flex;
+  max-height: 200px;
+}
+.fav-container #fav-lists .fav-item-container .fav-img-container .item-img {
+  max-width: 50%;
+  border-radius: 10px 0 0 10px;
+}
+.fav-container #fav-lists .fav-item-container .about-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 5px;
+}
+.fav-container #fav-lists .fav-item-container .about-item .title {
+  padding: 0 5px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 30px;
+  min-height: 50%;
+  display: flex;
+  align-items: center;
+}
+.fav-container #fav-lists .fav-item-container .about-item .price {
+  text-align: center;
+  font-size: 25px;
+  line-height: 30px;
+  height: 20%;
+}
+.fav-container #fav-lists .fav-item-container .about-item .fav-remove-btn {
+  margin: 5px;
+  color: #333;
+  font-size: 13px;
+  font-weight: bold;
+  background: transparent;
+  padding: 7px 22px;
+  border: 3px solid #333;
+  text-transform: uppercase;
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.fav-container #fav-lists .fav-item-container .about-item .fav-remove-btn::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: #333;
+  transform-origin: 50% 0%;
+  transform: scaleY(0);
+  transition: transform ease 0.3s;
+}
+.fav-container #fav-lists .fav-item-container .about-item .fav-remove-btn:hover {
+  color: #fff;
+}
+.fav-container #fav-lists .fav-item-container .about-item .fav-remove-btn:hover::before {
+  transform-origin: 50% 100%;
+  transform: scaleY(1);
+}
+/*# sourceMappingURL=main.css.map */

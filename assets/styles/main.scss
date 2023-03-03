@@ -22,7 +22,9 @@ $nav-color: rgb(33, 33, 31);
   margin: 0;
   padding: 0;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font: 14px/22px "Lato", Arial, sans-serif;
   font-family: "Gill Sans", sans-serif;
@@ -111,6 +113,20 @@ nav {
       a {
         color: #777777;
         text-decoration: none;
+        .favCount {
+          background-color: $button1;
+          border-radius: 10px;
+          color: white;
+          display: inline-block;
+          font-size: 12px;
+          line-height: 1;
+          padding: 4px 7px;
+          margin-bottom: 5px;
+          margin-left: 6px;
+          text-align: center;
+          vertical-align: middle;
+          white-space: nowrap;
+        }
         &#cart {
           cursor: pointer;
         }
@@ -140,7 +156,9 @@ nav {
   display: inline-block;
   font-size: 12px;
   line-height: 1;
-  padding: 3px 7px;
+  padding: 4px 7px;
+  margin-bottom: 5px;
+  margin-left: 6px;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
@@ -271,10 +289,10 @@ nav {
     color: $button-light;
 
     &.--left {
-      left: 80px;
+      left: 117px;
     }
     &.--right {
-      right: 80px;
+      right: 117px;
     }
   }
 }
@@ -284,6 +302,8 @@ nav {
     position: relative;
     height: 385px;
     overflow-x: scroll;
+    padding-right: 100px;
+    padding-top: 61px;
     // background-color: rgb(255, 232, 177);
   }
 }
@@ -298,7 +318,8 @@ nav {
   margin-top: 10px;
   border-radius: 5px;
   padding: 16px 8px;
-  margin: 20px 120px;
+  padding-top: 37px;
+  margin: 20px 11%;
   background-color: lighten($color: $main-color, $amount: 50%);
 }
 .ranking-num {
@@ -306,13 +327,14 @@ nav {
   position: absolute;
   z-index: 1;
   margin-left: 7px;
+  margin-top: 4px;
   // border: solid 1px #515783;
   margin-bottom: 6px;
   font-weight: 900;
   width: 40px;
   height: 30px;
   border-radius: 50px;
-  background-color: rgb(248, 169, 0);
+  background-color: rgb(208, 128, 0);
   font: 20px;
   color: white;
   display: flex;
@@ -326,6 +348,9 @@ nav {
   }
   justify-content: inherit;
   flex-wrap: nowrap;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
 
   &.--ranking {
     // justify-content: space-around;
@@ -371,13 +396,12 @@ nav {
 
   .item {
     // transition: all 0.3s;
-    margin: 7px 20px;
-    margin: 0 17px;
-    margin-bottom: 20px;
-    border-radius: 9px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-    min-width: 206px;
-    max-width: 206px;
+    margin: 0 9px;
+    margin-bottom: 45px;
+    border-radius: 9px;
+    min-width: 170px;
+    max-width: 170px;
     // &:hover {
     //   top: -1px;
     //   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
@@ -386,22 +410,22 @@ nav {
       background: floralwhite;
       // min-width: 206px;
       // max-width: 206px;
-      padding-top: 8px;
+      padding-top: 0;
       padding-bottom: 5px;
-      min-height: 335px;
+      min-height: 324px;
       text-align: center;
       .item-img {
         margin-top: 0;
         border-radius: 5px;
-        min-height: 260px;
-        max-height: 260px;
-        width: 190px;
+        min-height: 250px;
+        max-height: 250px;
+        width: 100%;
       }
       .about-item {
         display: flex;
         width: 100%;
         /* justify-content: center; */
-        padding: 0 25px;
+        padding: 0 10px;
         justify-content: space-between;
         align-items: center;
         /* margin: 0 22px; */
@@ -554,7 +578,7 @@ nav {
   color: white;
   z-index: 3;
   .hidden {
-    // display: none;
+    display: none;
   }
 }
 
@@ -580,10 +604,43 @@ nav {
 }
 ////////////////////////////////////
 
-// .img-container {
-//   overflow: hidden;
-//   border-radius: 5px;
-// }
+.img-container {
+  // overflow: hidden;
+  // border-radius: 5px;
+  .fav-icon.like-no:before {
+    content: "\f004";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    // font-weight: 900;
+    font-size: 30px;
+    z-index: 1;
+    right: 8px;
+    top: 8px;
+    color: white;
+    text-shadow: 1px 1px 2px #000;
+    transition: 0.3s;
+  }
+  .fav-icon.like-no:hover:before {
+    color: red;
+  }
+  .fav-icon.like-yes:before {
+    content: "\f004";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    font-weight: 900;
+    font-size: 30px;
+    z-index: 1;
+    right: 8px;
+    top: 8px;
+    color: red;
+    transition: 0.3s;
+    text-shadow: 1px 1px 2px #000;
+  }
+  .fav-icon.like-yes:hover:before {
+    color: white;
+    // font-weight: 100;
+  }
+}
 .item-container {
   border: 1px solid #ddd;
   margin: 0 auto;
@@ -636,14 +693,14 @@ li.item {
     height: 100%;
     margin-bottom: 6px;
     /* margin-top: 7px; */
-    color: #d3ab55;
-    background-color: #fff;
+    color: #d6a233;
+    background-color: #ffffff;
     font-family: "Josefin Sans", sans-serif;
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 1px solid #d3ab55;
+    border: 2px solid #d6a233;
     border-radius: 9px;
     outline: none;
     cursor: pointer;
@@ -702,5 +759,102 @@ li.item {
     font-size: 10px;
     width: 100px;
     height: 30px;
+  }
+}
+
+//////////////// Favorite page //////////////////////////
+.fav-msg h3 {
+  margin-top: 45px;
+}
+.fav-text {
+  font-size: 50px;
+  margin-top: 200px;
+  text-align: center;
+}
+.fav-container {
+  width: 100%;
+  margin-top: 30px;
+  #fav-lists {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 212px;
+    .fav-list {
+      margin: 0 20px;
+      margin-bottom: 26px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    }
+    .fav-item-container {
+      max-width: 300px;
+      .fav-img-container {
+        display: flex;
+        max-height: 200px;
+
+        .item-img {
+          max-width: 50%;
+          border-radius: 10px 0 0 10px;
+        }
+      }
+      .about-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 10px 5px;
+        .title {
+          padding: 0 5px;
+          text-align: center;
+          font-size: 22px;
+          line-height: 30px;
+          min-height: 50%;
+          display: flex;
+          align-items: center;
+        }
+        .price {
+          text-align: center;
+          font-size: 25px;
+          line-height: 30px;
+          height: 20%;
+        }
+        .fav-remove-btn {
+          margin: 5px;
+          color: #333;
+          font-size: 13px;
+          font-weight: bold;
+          background: transparent;
+          padding: 7px 22px;
+          border: 3px solid #333;
+          text-transform: uppercase;
+          border-radius: 6px;
+          position: relative;
+          z-index: 1;
+          transition: 0.3s;
+          cursor: pointer;
+          &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: #333;
+            transform-origin: 50% 0%;
+            transform: scaleY(0);
+            transition: transform ease 0.3s;
+          }
+          &:hover {
+            color: #fff;
+          }
+          &:hover::before {
+            transform-origin: 50% 100%;
+            transform: scaleY(1);
+          }
+        }
+      }
+    }
   }
 }
