@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/main.css" />
+    <script
+      src="https://kit.fontawesome.com/fa4318b983.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.1/axios.min.js"
+      integrity="sha512-NbjaUHU8g0+Y8tMcRtIz0irSU3MjLlEdCvp82MqciVF4R2Ru/eaXHDjNSOvS6EfhRYbmQHuznp/ghbUvcC0NVw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container --nav">
+      <nav>
+        <div class="container">
+          <ul class="navbar-left">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#ranking">Ranking</a></li>
+            <li><a href="index.html#manga">Manga</a></li>
+            <li>
+              <a href="/favorite.html"
+                >Favorite<span class="favCount">3</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <main>
+      <div class="fav-msg"></div>
+      <div class="fav-container">
+        <ul id="fav-lists">
+          <!-- <li class="fav-list">
+            <div class="unique-id" style="display: none">${image.id}</div>
+            <div class="fav-item-container">
+              <div class="fav-img-container">
+                <img
+                  class="item-img"
+                  src="/assets/imgs/tokyo-ghoul.jpg"
+                  alt="tokyo ghoul"
+                />
+                <div class="about-item">
+                  <p class="title">JoJo's Bizarre Adventure</p>
+                  <div class="price">$7.00</div>
+                  <button class="fav-remove-btn">remove</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="fav-list">
+            <div class="fav-item-container">
+              <div class="fav-img-container">
+                <img
+                  class="item-img"
+                  src="/assets/imgs/tokyo-ghoul.jpg"
+                  alt="tokyo ghoul"
+                />
+                <div class="about-item">
+                  <p class="title">Tokyo ghoul</p>
+                  <div class="price">$7.00</div>
+                  <button class="fav-remove-btn">remove</button>
+                </div>
+              </div>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.1/axios.min.js"></script>
+    <script src="/assets/app.js" async></script>
+    <script src="/assets/favorite.js"></script>
+  </body>
+</html>
