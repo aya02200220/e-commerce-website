@@ -172,20 +172,49 @@ window.addEventListener("load", () => {
       const faveObj = { id, title, price, image };
 
       let existingFavs = favArr.find((fav) => fav.id == obj.id);
-      console.log("existingFavs", existingFavs);
-      console.log("一覧表示", favArr);
+      // console.log("existingFavs", existingFavs);
+      // console.log("一覧表示", favArr);
       if (existingFavs) {
-        console.log("すでに格納済み");
+        // console.log("すでに格納済み");
         favArr = favArr.filter((fav) => fav.id !== obj.id);
         localStorage.setItem("favs", JSON.stringify(favArr));
-        console.log("格納済みなので削除 ", favArr);
+        // console.log("格納済みなので削除 ", favArr);
         favCount.innerHTML--;
+        dislikeDuplicateData(obj.id);
       } else {
-        console.log("新しく追加");
+        // console.log("新しく追加");
         favArr.push(faveObj);
         localStorage.setItem("favs", JSON.stringify(favArr));
         favCount.innerHTML++;
+        likeDuplicateData(obj.id);
       }
+    };
+
+    const likeDuplicateData = (id) => {
+      let items = document.querySelectorAll(".item");
+      items.forEach((item) => {
+        let tmp = item.querySelector(".unique-id").innerHTML;
+        if (tmp === id) {
+          let addLike = item.querySelector(".fav-icon");
+          if (!randoms.includes("like-yes")) {
+            addLike.classList.add("like-yes");
+            addLike.classList.remove("like-no");
+          }
+        }
+      });
+    };
+    const dislikeDuplicateData = (id) => {
+      let items = document.querySelectorAll(".item");
+      items.forEach((item) => {
+        let tmp = item.querySelector(".unique-id").innerHTML;
+        if (tmp === id) {
+          let addLike = item.querySelector(".fav-icon");
+          if (!randoms.includes("like-no")) {
+            addLike.classList.add("like-no");
+            addLike.classList.remove("like-yes");
+          }
+        }
+      });
     };
 
     // add to cart event -----------------------------------------
