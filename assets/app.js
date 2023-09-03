@@ -12,17 +12,17 @@ let toggle = "";
 // localStorage.removeItem('randoms');
 // localStorage.clear();
 
-const apiUrl = `https://jsonblob.com/api/1073530511632384000`;
+const apiUrl = `http://jsonblob.com/api/1147831522991923200`;
 // const apiUrl = `http://jsonblob.com/api/1073530511632384000`;
 
 window.addEventListener("load", () => {
   fetchRandomImages();
+
   function fetchRandomImages(params) {
     axios
       .get(apiUrl)
       .then((response) => {
         displayImages(response.data);
-        // displayRndImages(response.data);
       })
       .catch((err) => {
         console.log(err);
