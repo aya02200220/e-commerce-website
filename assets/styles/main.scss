@@ -100,6 +100,25 @@ nav {
 
   .navbar-left {
     float: left;
+    li a {
+      font-size: 25px;
+    }
+    .favCount {
+      font-size: 20px;
+    }
+  }
+
+  .navbar-right {
+    float: left;
+    li a {
+      font-size: 25px;
+    }
+    .badge {
+      font-size: 20px;
+    }
+  }
+  .favCount {
+    font-size: 25px;
   }
 
   .navbar-right {

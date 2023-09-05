@@ -30,8 +30,8 @@ window.addEventListener("load", () => {
       })
       .catch((err) => {
         console.log(err);
-        // APIからデータを取得できなかった場合、ローカルのmanga.jsonファイルからデータを取得します。
-        localStorage.removeItem("randoms");
+        // APIからデータを取得できなかった場合、ローカルのデータを取得
+        // localStorage.removeItem("randoms");
         displayImages(mangaData);
       });
   }
@@ -251,7 +251,7 @@ window.addEventListener("load", () => {
     cartRow.classList.add("cart-list");
     let cartItems = document.getElementsByClassName("cart-lists")[0];
     let cartItemNames = cartItems.getElementsByClassName("cart title");
-    console.log(cartItemNames);
+    // console.log(cartItemNames);
     for (let i = 0; i < cartItemNames.length; i++) {
       if (cartItemNames[i].innerHTML == title) {
         alert("This item is already added to the cart");

@@ -91,6 +91,24 @@ nav .container.--nav {
 nav .navbar-left {
   float: left;
 }
+nav .navbar-left li a {
+  font-size: 25px;
+}
+nav .navbar-left .favCount {
+  font-size: 20px;
+}
+nav .navbar-right {
+  float: left;
+}
+nav .navbar-right li a {
+  font-size: 25px;
+}
+nav .navbar-right .badge {
+  font-size: 20px;
+}
+nav .favCount {
+  font-size: 25px;
+}
 nav .navbar-right {
   float: right;
 }
